@@ -18,4 +18,4 @@ server.listen(3000);
 
 matrix = [];
 
-
+function generateMatrix()
