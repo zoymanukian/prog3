@@ -1,4 +1,5 @@
-class Fertilizer extends LivingCreature {
+var LivingCreature = require("./livingcreature");
+module.exports = class Fertilizer extends LivingCreature {
     constructor(x, y) {
         super(x.y)
         this.energy = 8;

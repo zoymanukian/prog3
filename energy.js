@@ -1,4 +1,4 @@
-const LivingCreature = require("./LivingCreature");
+var LivingCreature = require("./livingcreature");
 
 module.exports = class Energy extends LivingCreature{
     constructor(x, y) {
@@ -6,6 +6,7 @@ module.exports = class Energy extends LivingCreature{
         this.energy = 17
        
     }
+    
     getNewCoordinates() {
         this.directions = [
             [this.x - 1, this.y - 1],

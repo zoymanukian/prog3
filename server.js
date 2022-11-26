@@ -1,5 +1,4 @@
 var express = require('express');
-const Energy = require('./energy');
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
@@ -17,10 +16,16 @@ app.get('/', function (req, res) {
 server.listen(3000);
 
 
+grassArr = []
+grassEaterArr = []
+predatorArr = []
+creatorArr = []
+fertilizerArr = []
+energyArr = []
 matrix = [];
 
 function generateMatrix(matLen, gr, grEat, pr, cre, fer, en) {
-    let matrix = []
+  
     for (let i = 0; i < matLen; i++) {
         matrix[i] = []
         for (let j = 0; j < matLen; j++) {
@@ -72,21 +77,16 @@ function generateMatrix(matLen, gr, grEat, pr, cre, fer, en) {
         }
     }
 
-    return matrix
+    
 
 
 }
 
 
-matrix = generateMatrix(25, 10, 5, 10, 6, 3, 4)
+generateMatrix(25, 10, 5, 10, 6, 3, 4)
 io.sockets.emit('send matrix', matrix)
 
-grassArr = []
-grassEaterArr = []
-predatorArr = []
-creatorArr = []
-fertilizerArr = []
-energyArr = []
+
 weath = "winter"
 
 
@@ -135,7 +135,6 @@ function game() {
     for (let i in grassArr) {
         grassArr[i].eat()
         grassArr[i].mul()
-
     }
 }
 
@@ -151,12 +150,10 @@ io.sockets.emit("send matrix", matrix);
 
 
 setInterval(game, 700)
-io.on('connection', function (socket) {
-    createObject(matrix)
-})
+
 
 io.on('connection', function (socket) {
-    createObject(matrix);
+    createObject();
     socket.on("grass", grass);
     socket.on("grassEater", grassEater);
     socket.on("creator", creator);
