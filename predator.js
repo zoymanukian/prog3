@@ -1,7 +1,7 @@
 var LivingCreature = require("./livingcreature");
 module.exports = class Predator extends LivingCreature {
     constructor(x, y) {
-        super(x,y)
+        super(x, y)
         this.energy = 8;
         this.directions = [];
     }
@@ -17,25 +17,32 @@ module.exports = class Predator extends LivingCreature {
             [this.x + 1, this.y + 1]
         ];
 
-    
+
     }
-    
+
     chooseCell(character) {
         this.getNewCoordinates()
         return super.chooseCell(character)
     }
 
+
+
+    random(emptyCells) {
+        return emptyCells[Math.floor(Math.random() * emptyCells.length)]
+    }
+
+
     mul() {
         var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
+        var newCell = this.random(emptyCells);
 
         if (newCell) {
             var newX = newCell[0];
             var newY = newCell[1];
-            matrix[newY][newX] = 3; 
+            matrix[newY][newX] = 3;
 
-            var newPredator = new Predator(newX, newY); 
-            predatorArr.push(newPredator); 
+            var newPredator = new Predator(newX, newY);
+            predatorArr.push(newPredator);
             this.energy = 8;
         }
     }
@@ -43,7 +50,7 @@ module.exports = class Predator extends LivingCreature {
     move() {
         this.energy--
         var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
+        var newCell = this.random(emptyCells);
         if (newCell && this.energy >= 0) {
             var newX = newCell[0];
             var newY = newCell[1];
@@ -58,7 +65,7 @@ module.exports = class Predator extends LivingCreature {
 
     eat() {
         var emptyCells = this.chooseCell(2);
-        var newCell = random(emptyCells);
+        var newCell = this.random(emptyCells);
         if (newCell) {
             this.energy++
             var newX = newCell[0];

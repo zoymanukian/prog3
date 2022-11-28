@@ -1,7 +1,7 @@
 var LivingCreature = require("./livingcreature");
 module.exports = class GrassEater extends LivingCreature {
     constructor(x, y) {
-        super(x,y)
+        super(x, y)
         this.energy = 8;
         this.directions = []
     }
@@ -18,22 +18,29 @@ module.exports = class GrassEater extends LivingCreature {
         ];
 
     }
-    
+
     chooseCell(character, character1) {
         this.getNewCoordinates()
-      return  super.chooseCell(character, character1)
+        return super.chooseCell(character, character1)
+
     }
+    random(emptyCells) {
+        return emptyCells[Math.floor(Math.random() * emptyCells.length)]
+    }
+
+
+
     mul() {
         var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
+        var newCell = this.random(emptyCells);
 
         if (newCell) {
             var newX = newCell[0];
             var newY = newCell[1];
-            matrix[newY][newX] = 2; 
+            matrix[newY][newX] = 2;
 
-            var newGrass = new GrassEater(newX, newY); 
-            grassEaterArr.push(newGrass); 
+            var newGrass = new GrassEater(newX, newY);
+            grassEaterArr.push(newGrass);
             this.energy = 8;
         }
     }
@@ -41,11 +48,11 @@ module.exports = class GrassEater extends LivingCreature {
     move() {
         this.energy--
         var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
+        var newCell = this.random(emptyCells);
         if (newCell && this.energy >= 0) {
             var newX = newCell[0];
             var newY = newCell[1];
-            matrix[newY][newX] = matrix[this.y][this.x] 
+            matrix[newY][newX] = matrix[this.y][this.x]
             matrix[this.y][this.x] = 0;
             this.x = newX
             this.y = newY
@@ -55,8 +62,8 @@ module.exports = class GrassEater extends LivingCreature {
     }
 
     eat() {
-        var emptyCells = this.chooseCell(1, 5); 
-        var newCell = random(emptyCells);
+        var emptyCells = this.chooseCell(1, 5);
+        var newCell = this.random(emptyCells);
         if (newCell) {
             this.energy++
             var newX = newCell[0];

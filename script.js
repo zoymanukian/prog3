@@ -22,12 +22,12 @@ function weath() {
 
 function setup() {
     frameRate(5);
-    createCanvas(25 * side + 2,25 * side + 2);
+    createCanvas(20 * side + 1, 20 * side + 1);
     background("#acacac")
 }
 
 
-function draww() {
+function draww(matrix) {
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
 
@@ -69,27 +69,48 @@ function draww() {
 
         }
     }
-    
 
-    rect(x * side, y * side, side,side)
+
+    rect(x * side, y * side, side, side)
 }
 
 
 
 
-function grass() {
+function Grass() {
     socket.emit("grass")
 }
-function grassEater() {
+function GrassEater() {
     socket.emit("grassEater")
 }
-function creator() {
+function Creator() {
     socket.emit("creator")
 }
-function predator() {
+function Predator() {
     socket.emit("predator")
 }
-function energy() {
+function Fertilizer() {
+    socket.emit("fertilizer")
+}
+function Energy() {
     socket.emit("energy")
+}
+function Summer() {
+    socket.emit("summer")
+}
+function Winter() {
+    socket.emit("winter")
+}
+function Spring() {
+    socket.emit("spring")
+}
+function Autumn() {
+    socket.emit("autumn")
+}
+function Clear() {
+    socket.emit("clear")
+}
+function Random() {
+    socket.emit("random")
 }
 socket.on("send matrix", draww)

@@ -23,11 +23,18 @@ module.exports = class Creator extends LivingCreature {
         this.getNewCoordinates()
         return super.chooseCell(character)
     }
+
+
+    random(emptyCells) {
+        return emptyCells[Math.floor(Math.random() * emptyCells.length)]
+    }
+
+
     mul() {
         let count = Math.round(random(5))
         this.energy--;
         var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
+        var newCell = this.random(emptyCells);
 
         console.log(emptyCells, newCell);
         if (newCell) {
@@ -38,11 +45,7 @@ module.exports = class Creator extends LivingCreature {
                 let gr = new Grass(this.x, this.y)
                 grassArr.push(gr)
             }
-            // else if (count == 2){
-            //     matrix[this.y][this.x] = 2;
-            //     let grEa = new GrassEater (this.x, this.y)
-            //     grassEaterArr.push(grEa)
-            // }
+
             else if (count == 3) {
                 matrix[this.y][this.x] = 3;
                 let pre = new Predator(this.x, this.y)
@@ -59,7 +62,7 @@ module.exports = class Creator extends LivingCreature {
     move() {
         this.energy--
         var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
+        var newCell = thsi.random(emptyCells);
         if (newCell && this.energy >= 0) {
             var newX = newCell[0];
             var newY = newCell[1];
