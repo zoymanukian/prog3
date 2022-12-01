@@ -85,6 +85,8 @@ function generateMatrix(matLen, gr, grEat, pr, cre, fer, en) {
 
 
 generateMatrix(25, 10, 5, 10, 6, 3, 4)
+
+
 io.sockets.emit('send matrix', matrix)
 
 
@@ -105,23 +107,23 @@ function createObject() {
                 let gr = new Grass(x, y)
                 grassArr.push(gr)
             } else if (matrix[y][x] == 2) {
-                let gr = new GrassEater(x, y)
-                grassEaterArr.push(gr)
+                let grEat = new GrassEater(x, y)
+                grassEaterArr.push(grEat)
             } else if (matrix[y][x] == 3) {
-                let gr = new Predator(x, y)
-                predatorArr.push(gr)
+                let pre = new Predator(x, y)
+                predatorArr.push(pre)
             }
             else if (matrix[y][x] == 4) {
-                let gr = new Creator(x, y)
-                creatorArr.push(gr)
+                let cre = new Creator(x, y)
+                creatorArr.push(cre)
             }
             else if (matrix[y][x] == 5) {
-                let gr = new Fertilizer(x, y)
-                fertilizerArr.push(gr)
+                let fer = new Fertilizer(x, y)
+                fertilizerArr.push(fer)
             }
             else if (matrix[y][x] == 6) {
-                let gr = new Energy(x, y)
-                energyArr.push(gr)
+                let en = new Energy(x, y)
+                energyArr.push(en)
             }
 
         }
@@ -160,17 +162,16 @@ for (let i in fertilizerArr) {
 io.sockets.emit("send matrix", matrix);
 
 
-
 setInterval(game, 700)
 
 function Clear() {
     grassArr = [];
     grassEaterArr = [];
     predatorArr = [];
-    personaArr = [];
-    rockArr = [];
-    blackholeArr = [];
-    
+    creatorArr = [];
+    fertilizerArr = [];
+    energyArr = [];
+
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
             matrix[y][x] = 0;
@@ -191,8 +192,8 @@ function GrassEater() {
     let x = Math.floor(Math.random() * 25)
     let y = Math.floor(Math.random() * 25)
     if (matrix[y][x] == 0) {
-        matrix[y][x] = 1
-        grassArr.push(new GrassEater(x, y));
+        matrix[y][x] = 2
+        grassEaterArr.push(new GrassEater(x, y));
     }
 }
 
@@ -201,8 +202,8 @@ function Predator() {
     let x = Math.floor(Math.random() * 25)
     let y = Math.floor(Math.random() * 25)
     if (matrix[y][x] == 0) {
-        matrix[y][x] = 1
-        grassArr.push(new Predator(x, y));
+        matrix[y][x] = 3
+        predatorArr.push(new Predator(x, y));
     }
 }
 
@@ -210,8 +211,8 @@ function Creator() {
     let x = Math.floor(Math.random() * 25)
     let y = Math.floor(Math.random() * 25)
     if (matrix[y][x] == 0) {
-        matrix[y][x] = 1
-        grassArr.push(new Creator(x, y));
+        matrix[y][x] = 4
+        creatorArr.push(new Creator(x, y));
     }
 }
 
@@ -220,14 +221,28 @@ function Fertilizer() {
     let x = Math.floor(Math.random() * 25)
     let y = Math.floor(Math.random() * 25)
     if (matrix[y][x] == 0) {
-        matrix[y][x] = 1
-        grassArr.push(new Fertilizer(x, y));
+        matrix[y][x] = 5
+        fertilizerArr.push(new Fertilizer(x, y));
+    }
+}
+
+
+function Energy() {
+    let x = Math.floor(Math.random() * 25)
+    let y = Math.floor(Math.random() * 25)
+    if (matrix[y][x] == 0) {
+        matrix[y][x] = 6
+        energyArr.push(new Energy(x, y));
     }
 }
 
 function Random() {
-    generateMatrix(40, 40, 25, 20, 15, 4, 3, )
+    generateMatrix(40, 40, 25, 20, 15, 4, 3,)
 }
+
+
+io.sockets.emit("send matrix", matrix)
+
 
 io.on('connection', function (socket) {
     createObject();
@@ -237,5 +252,7 @@ io.on('connection', function (socket) {
     socket.on("predator", Predator);
     socket.on("fertilizer", Fertilizer);
     socket.on("energy", Energy);
+    socket.on("random", Random);
+    socket.on("clear", Clear);
 
 });

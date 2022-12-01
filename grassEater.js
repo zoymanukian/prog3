@@ -39,8 +39,8 @@ module.exports = class GrassEater extends LivingCreature {
             var newY = newCell[1];
             matrix[newY][newX] = 2;
 
-            var newGrass = new GrassEater(newX, newY);
-            grassEaterArr.push(newGrass);
+            var newGrassEater = new GrassEater(newX, newY);
+            grassEaterArr.push(newGrassEater);
             this.energy = 8;
         }
     }

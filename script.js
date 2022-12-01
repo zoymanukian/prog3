@@ -1,30 +1,28 @@
-var side = 20;
+var side = 25;
 var socket = io();
 
-
-weath = "autumn"
-function weath() {
-    weath = "autumn"
-}
-
-function weath() {
-    weath = "spring"
-}
-
-function weath() {
-    weath = "summer"
-}
-
-function weath() {
-    weath = "winter"
-}
-
+var btn = document.getElementById('btn'); 
+var btn1 = document.getElementById('btn1'); 
+var btn2 = document.getElementById('btn2'); 
+var btn3 = document.getElementById('btn3'); 
 
 function setup() {
-    frameRate(5);
-    createCanvas(20 * side + 1, 20 * side + 1);
-    background("#acacac")
+  frameRate(25);
+  createCanvas(25 * side + 1, 25 * side + 1);
+  background('#acacac');
 }
+btn.addEventListener('click', function onClick() {
+    document.body.style.backgroundColor = '#ADFF2F';
+  });
+  btn1.addEventListener('click', function onClick() {
+    document.body.style.backgroundColor = '#7FFFD4';
+  });
+  btn2.addEventListener('click', function onClick() {
+    document.body.style.backgroundColor = '#FF8C00';
+  });
+  btn3.addEventListener('click', function onClick() {
+    document.body.style.backgroundColor = '#87CEEB';
+  });
 
 
 function draww(matrix) {
@@ -32,20 +30,19 @@ function draww(matrix) {
         for (var x = 0; x < matrix[y].length; x++) {
 
             if (matrix[y][x] == 1) {
-                if (weath == "spring") {
-                    fill("#F10086")
-
-                }
-                else if (weath == "summer") {
-                    fill("#3EC70B");
-                }
-                else if (weath == "winter") {
-                    fill("white")
-                }
-                else if (weath == "autumn") {
-                    fill("#EC9B3B")
-                }
-                rect(x * side, y * side, side, side);
+                btn.addEventListener('click', function onClick() {
+                    fill("green");
+                });
+                btn1.addEventListener('click', function onClick() {
+                    fill("green");      
+                });
+                btn2.addEventListener('click', function onClick() { 
+                    fill("orange");        
+                });
+                btn3.addEventListener('click', function onClick() {      
+                    fill("white");    
+                });
+                
             }
             else if (matrix[y][x] == 0) {
                 fill("#acacac");
@@ -94,18 +91,6 @@ function Fertilizer() {
 }
 function Energy() {
     socket.emit("energy")
-}
-function Summer() {
-    socket.emit("summer")
-}
-function Winter() {
-    socket.emit("winter")
-}
-function Spring() {
-    socket.emit("spring")
-}
-function Autumn() {
-    socket.emit("autumn")
 }
 function Clear() {
     socket.emit("clear")
