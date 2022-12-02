@@ -30,17 +30,17 @@ module.exports = class GrassEater extends LivingCreature {
 
 
 
-    mul() {
+    mul () {
         var emptyCells = this.chooseCell(0);
         var newCell = this.random(emptyCells);
-
-        if (newCell) {
+ 
+        if(newCell){
             var newX = newCell[0];
             var newY = newCell[1];
             matrix[newY][newX] = 2;
-
-            var newGrassEater = new GrassEater(newX, newY);
-            grassEaterArr.push(newGrassEater);
+ 
+            var newGrass = new GrassEater(newX, newY);
+            grassEaterArr.push(newGrass);
             this.energy = 8;
         }
     }
