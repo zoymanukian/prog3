@@ -74,28 +74,28 @@ function draww(matrix) {
 
 
 
-function Grass() {
+function GrassA() {
     socket.emit("grass")
 }
-function GrassEater() {
+function GrassEaterA() {
     socket.emit("grassEater")
 }
-function Creator() {
+function CreatorA() {
     socket.emit("creator")
 }
-function Predator() {
+function PredatorA() {
     socket.emit("predator")
 }
-function Fertilizer() {
+function FertilizerA() {
     socket.emit("fertilizer")
 }
-function Energy() {
+function EnergyA() {
     socket.emit("energy")
 }
-function Clear() {
+function ClearA() {
     socket.emit("clear")
 }
-function Random() {
+function RandomA() {
     socket.emit("random")
 }
 socket.on("send matrix", draww)

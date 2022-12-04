@@ -164,7 +164,7 @@ io.sockets.emit("send matrix", matrix);
 
 setInterval(game, 700)
 
-function Clear() {
+function ClearA() {
     grassArr = [];
     grassEaterArr = [];
     predatorArr = [];
@@ -179,7 +179,7 @@ function Clear() {
     }
 }
 
-function Grass() {
+function GrassA() {
     let x = Math.floor(Math.random() * 25)
     let y = Math.floor(Math.random() * 25)
     if (matrix[y][x] == 0) {
@@ -188,7 +188,7 @@ function Grass() {
     }
 }
 
-function GrassEater() {
+function GrassEaterA() {
     let x = Math.floor(Math.random() * 25)
     let y = Math.floor(Math.random() * 25)
     if (matrix[y][x] == 0) {
@@ -198,7 +198,7 @@ function GrassEater() {
 }
 
 
-function Predator() {
+function PredatorA() {
     let x = Math.floor(Math.random() * 25)
     let y = Math.floor(Math.random() * 25)
     if (matrix[y][x] == 0) {
@@ -207,7 +207,7 @@ function Predator() {
     }
 }
 
-function Creator() {
+function CreatorA() {
     let x = Math.floor(Math.random() * 25)
     let y = Math.floor(Math.random() * 25)
     if (matrix[y][x] == 0) {
@@ -217,7 +217,7 @@ function Creator() {
 }
 
 
-function Fertilizer() {
+function FertilizerA() {
     let x = Math.floor(Math.random() * 25)
     let y = Math.floor(Math.random() * 25)
     if (matrix[y][x] == 0) {
@@ -227,7 +227,7 @@ function Fertilizer() {
 }
 
 
-function Energy() {
+function EnergyA() {
     let x = Math.floor(Math.random() * 25)
     let y = Math.floor(Math.random() * 25)
     if (matrix[y][x] == 0) {
@@ -236,7 +236,7 @@ function Energy() {
     }
 }
 
-function Random() {
+function RandomA() {
     generateMatrix(40, 40, 25, 20, 15, 4, 3,)
 }
 
@@ -246,13 +246,13 @@ io.sockets.emit("send matrix", matrix)
 
 io.on('connection', function (socket) {
     createObject();
-    socket.on("grass", Grass);
-    socket.on("grassEater", GrassEater);
-    socket.on("creator", Creator);
-    socket.on("predator", Predator);
-    socket.on("fertilizer", Fertilizer);
-    socket.on("energy", Energy);
-    socket.on("random", Random);
-    socket.on("clear", Clear);
+    socket.on("grass", GrassA);
+    socket.on("grassEater", GrassEaterA);
+    socket.on("creator", CreatorA);
+    socket.on("predator", PredatorA);
+    socket.on("fertilizer", FertilizerA);
+    socket.on("energy", EnergyA);
+    socket.on("random", RandomA);
+    socket.on("clear", ClearA);
 
 });
